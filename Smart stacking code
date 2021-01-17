@@ -1,1 +1,31 @@
+#include <iostream>
+#include <fstream>
+#include <string>
 
+using namespace std;
+
+void readFileFun() {
+
+	ifstream inFile;
+	inFile.open("input.txt");
+
+	//error check
+	if (inFile.fail()) {
+		cerr << "Error Opening File" << endl;
+		exit(1);
+	}
+
+	string box;
+	int count = 0;
+	//Read a file until reach end
+	while (!inFile.eof()){
+		inFile >> box;
+		count++;
+	}
+	cout << count << "items found" << endl;
+}
+
+void main() {
+	readFileFun();
+
+}
