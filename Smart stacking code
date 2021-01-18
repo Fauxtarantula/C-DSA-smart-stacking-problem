@@ -90,17 +90,18 @@ void readFileFun() {
 	int count = 0;
 	string box;
 	vector<string> boxvect;
-	while (!inFile.eof()) {
+
 		count++;
-		for (int i = 0; i < count; i++) {
+		for (;!inFile.eof() ; count++) {
 			getline(inFile, box, '\n');
 			boxvect.push_back(box);
-			}
 		}
-		for (int n = 0; n < boxvect.size(); n++) {
+	
+	for (int n = 0; n < boxvect.size(); n++) {
 		cout << boxvect[n] << endl;
-		}
 	}
+	
+}
 
 void main() {
 	readFileFun();
