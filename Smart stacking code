@@ -16,22 +16,29 @@ void readFileFun() {
 		exit(1);
 	}
 	int count = 0;
+	int counter = 12;
 	string box;
+	string box1;
+	vector<int> numvect;
 	vector<string> boxvect;
 
-		count++;
-		for (;!inFile.eof() ; count++) {
-			getline(inFile, box, '\n');
-			boxvect.push_back(box);
-		}
-	
+	for (; !inFile.eof(); count++) {
+		getline(inFile, box, '\n');
+		boxvect.push_back(box);
+	}
 	for (int n = 0; n < boxvect.size(); n++) {
-		cout << boxvect[n] << endl;
+
+		char cha = boxvect[n].at(12);
+		box1 = cha;
+		int m = stoi(box1);
+		numvect.push_back(m);
+		cout << numvect[n] << endl;
 	}
 	
 }
 
+
 void main() {
 	readFileFun();
 
-}
+}	
