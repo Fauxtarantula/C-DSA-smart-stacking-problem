@@ -17,9 +17,7 @@ void readFileFun() {
 		exit(1);
 	}
 	int count = 0;
-	int counter = 12;
 	string box;
-	string box1;
 	vector<int> numvect;
 	vector<string> boxvect;
 
@@ -27,6 +25,7 @@ void readFileFun() {
 		getline(inFile, box, '\n');
 		boxvect.push_back(box);
 	}
+	//try catch
 	for (int n = 0; n < boxvect.size(); n++) {
 
 		string cha = boxvect[n].substr(11);
@@ -35,5 +34,11 @@ void readFileFun() {
 		numvect.push_back(m);
 		cout << numvect[n] << endl;
 	}
+
+}
+
+
+void main() {
+	readFileFun();
 
 }
