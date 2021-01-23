@@ -1,1 +1,67 @@
+// SOURCE FILE
+/////////////////////////////////////////////////////////////////////////////////////////////////
+#include "Header.h"
+
+using namespace std;
+
+void sauce::readFileFun() {
+
+	ifstream inFile;
+	inFile.open("list.txt");
+
+	//error check
+	if (inFile.fail()) {
+		cerr << "Error Opening File" << endl;
+		exit(1);
+	}
+	int count = 0;
+	string box;
+	vector<int> numvect;
+	vector<string> boxvect;
+
+	for (; !inFile.eof(); count++) {
+		getline(inFile, box, '\n');
+		boxvect.push_back(box);
+	}
+	for (int n = 0; n < boxvect.size(); n++) {
+
+		string cha = boxvect[n].substr(11);
+		int m = stoi(cha);
+		numvect.push_back(m);
+		cout << numvect[n] << endl;
+	}
+}
+
+void sauce::shelf(int conv[]) {
+	int* Ptr1;
+	int* Ptr2;
+	
+	
+
+}
+
+//HEADER FILE
+/////////////////////////////////////////////////////////////////////////////////////////////////
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+class sauce {
+public:
+	void readFileFun();
+	void shelf(int conv[]);
+	
+};
+
+//MAIN FILE
+/////////////////////////////////////////////////////////////////////////////////////////////////
+#include "Header.h"
+using namespace std;
+
+int main() {
+	sauce sauces;
+	sauces.readFileFun( );
+
+}	
 
