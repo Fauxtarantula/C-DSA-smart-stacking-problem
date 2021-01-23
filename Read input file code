@@ -1,1 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include<sstream>
 
+using namespace std;
+
+void readFileFun() {
+
+	ifstream inFile;
+	inFile.open("input.txt");
+
+	//error check
+	if (inFile.fail()) {
+		cerr << "Error Opening File" << endl;
+		exit(1);
+	}
+	int count = 0;
+	string box;
+	vector<int> numvect;
+	vector<string> boxvect;
+
+	for (; !inFile.eof(); count++) {
+		getline(inFile, box, '\n');
+		boxvect.push_back(box);
+	}
+	//try catch
+	for (int n = 0; n < boxvect.size(); n++) {
+
+		string cha = boxvect[n].substr(11);
+		
+		int m = stoi(cha);
+		numvect.push_back(m);
+		cout << numvect[n] << endl;
+	}
+
+}
+
+
+void main() {
+	readFileFun();
+
+}
