@@ -1,0 +1,27 @@
+//rack1
+	//we need to make this into a class function and pass parameters from main to function and call remainder into rack2
+	list<int> rack1;
+	int a = 0;
+	//calculate max 5 kg in rack 1
+	for (int i = numvect[0]; a < 9 && i > 0; i--) {
+		a += 5;
+		rack1.push_front(5);
+	}
+	
+	for (int i = numvect[1]; a < 11 && i>0; i--) {
+		a += 3;
+		rack1.push_front(3);
+	}
+
+	for (int i = numvect[2]; a < 12 && i>0; i--) {
+		a += 2;
+		rack1.push_front(2);
+	}
+
+	for (int i = numvect[3]; a < 13 && i>0; i--) {
+		a += 1;
+		rack1.push_front(1);
+	}
+	cout << a;
+  
+  //still havent made function for this
