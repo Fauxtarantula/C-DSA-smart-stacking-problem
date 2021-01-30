@@ -4,8 +4,8 @@
 
 using namespace std;
 
-void sauce::readFileFun() {
 
+void sauce::readFileFun(vector<int> &vect) {
 	ifstream inFile;
 	inFile.open("list.txt");
 
@@ -16,29 +16,41 @@ void sauce::readFileFun() {
 	}
 	int count = 0;
 	string box;
-	vector<int> numvect;
 	vector<string> boxvect;
 
+	
 	for (; !inFile.eof(); count++) {
 		getline(inFile, box, '\n');
 		boxvect.push_back(box);
 	}
-	for (int n = 0; n < boxvect.size(); n++) {
+
+	for (int n = 0; n < 4; n++) {
 
 		string cha = boxvect[n].substr(11);
 		int m = stoi(cha);
-		numvect.push_back(m);
-		cout << numvect[n] << endl;
+		vect.push_back(m);
+		cout << vect[n] << endl;
 	}
+	if (boxvect.size() > 4) {
+		string cha = boxvect[4].substr(13);
+		int m = stoi(cha);
+		vect.push_back(m);
+		cout << vect[4] << endl;
+	}
+	for (int n = 5; n < boxvect.size(); n++) {
+
+		string cha = boxvect[n].substr(25);
+		int m = stoi(cha);
+		vect.push_back(m);
+		cout << vect[n] << endl;
+	}
+
 }
 
-void sauce::shelf(int conv[]) {
-	int* Ptr1;
-	int* Ptr2;
+void sauce::shelf(vector<int> &conv) {
+	readFileFun(conv);
 	
-	
-
-}
+	}
 
 //HEADER FILE
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,14 +58,14 @@ void sauce::shelf(int conv[]) {
 #include <fstream>
 #include <string>
 #include <vector>
-
+#include <list>
+using namespace std;
 class sauce {
 public:
-	void readFileFun();
-	void shelf(int conv[]);
+	void readFileFun(vector<int> &vect);
+	void shelf(vector<int> &conv);
 	
 };
-
 //MAIN FILE
 /////////////////////////////////////////////////////////////////////////////////////////////////
 #include "Header.h"
@@ -61,7 +73,7 @@ using namespace std;
 
 int main() {
 	sauce sauces;
-	sauces.readFileFun( );
-
+	vector<int>vect;
+	sauces.shelf(vect);
 }	
 
