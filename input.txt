@@ -1,4 +1,9 @@
-No of 5kg ‐ 4
-No of 3kg ‐ 1
-No of 2kg ‐ 2
-No of 1kg ‐ 2
+No of 5kg - 4
+No of 3kg - 1
+No of 2kg - 2
+No of 1kg - 2
+No of racks - 4
+Weight limit for rack 1 - 14
+Weight limit for rack 2 - 12
+Weight limit for rack 3 - 10
+Weight limit for rack 4 - 8
