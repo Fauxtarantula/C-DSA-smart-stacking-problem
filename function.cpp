@@ -27,20 +27,20 @@ void sauce::readFileFun(vector<int>& vect) {
 		string cha = boxvect[n].substr(11);
 		int m = stoi(cha);
 		vect.push_back(m);
-		cout << vect[n] << endl;
+		//cout << vect[n] << endl;
 	}
 	if (boxvect.size() > 4) {
 		string cha = boxvect[4].substr(13);
 		int m = stoi(cha);
 		vect.push_back(m);
-		cout << vect[4] << endl;
+		//cout << vect[4] << endl;
 	}
 	for (int n = 5; n < boxvect.size(); n++) {
 
 		string cha = boxvect[n].substr(25);
 		int m = stoi(cha);
 		vect.push_back(m);
-		cout << vect[n] << endl;
+		//cout << vect[n] << endl;
 	}
 
 }
@@ -48,10 +48,13 @@ void sauce::readFileFun(vector<int>& vect) {
 void sauce::shelf(vector<int>& conv) {
 	readFileFun(conv);
 	//int p= conv[4];
+	//rack
+	
+
 	for (int t = conv[4], s = 0; t > 0, s < conv[4]; t--, s++) {
 		//numvect[+r] need this in recursive algorithm
-		int b = conv[5 + s];
-		//rack
+		int end = conv.size();
+		int b = conv[5+s];
 		vector<int> rack;
 		
 		int a = 0;
@@ -80,17 +83,52 @@ void sauce::shelf(vector<int>& conv) {
 			conv[3] = conv[3] - 1;//add to skip space
 			rack.push_back(1);
 		}
-		cout << "Rack" << t;
+
+		cout << "Rack " << t << "-" ;
 		for (int z = 0; z < rack.size(); z++) {
 			cout << " " << rack[z];
 		}
-		cout << endl;
+		cout << "(total: " << a << ")"<< endl;
+		//test(rack);
 	}
+	
+}
+
+void sauce::test(vector<int>& sv) {
+	
 }
 
 void sauce::Outbox(vector<int>& out) {
 	shelf(out);
-	for (int i = 0; i < 4;i++) {
-		cout << out[i];
+	cout << "Outstanding boxes: ";
+	for (int p = out[0]; p > 0; p--) {
+		cout << "5 ";
+		//out[i]
 	}
+	for (int p = out[1]; p > 0; p--) {
+		cout << "3 ";
+		//out[i]
+	}
+	for (int p = out[2]; p > 0; p--) {
+		cout << "2 ";
+		//out[i]
+	}
+	for (int p = out[3]; p > 0; p--) {
+		cout << "1 ";
+		//out[i]
+	}
+}
+
+void sauce::skip(vector<int>& coc) {
+	shelf(coc);
+	int c = 0;
+	for (int i = 0; i < 4; i++) {
+		if (coc[i] < 4) {
+			c = c + 1;
+		}
+		else
+			c = c + 0;
+	}
+	cout << c;
+
 }
