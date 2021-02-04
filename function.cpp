@@ -49,9 +49,7 @@ void sauce::shelf(vector<int>& conv) {
 	readFileFun(conv);
 	//int p= conv[4];
 	//rack
-	
-	vector<string> rack;
-	vector<int> rackweight;
+
 	for (int t = conv[4], s = 0; t > 0, s < conv[4]; t--, s++) {
 		//numvect[+r] need this in recursive algorithm
 		int end = conv.size();
@@ -62,50 +60,44 @@ void sauce::shelf(vector<int>& conv) {
 		//int a = 0;
 		//calculate max 5 kg in rack 1
 		//implement for loop in for loop
-		for (int i = conv[0]; a <= b - 5 && i > 0 && rack.size() < 4; i--) {
+		for (int i = conv[0]; a <= b - 5 && i > 0 && row.length() < 8; i--) { //8 characters limit in a string
 			a += 5;
 			conv[0] = conv[0] - 1;
-			//rack.push_back(5);
 			row += " 5";
 		}
 
-		for (int i = conv[1]; a <= b - 3 && i > 0 && rack.size() < 4; i--) {
+		for (int i = conv[1]; a <= b - 3 && i > 0 && row.length() < 8; i--) {
 			a += 3;
 			conv[1] = conv[1] - 1;
-			//rack.push_back(3);
 			row += " 3";
 		}
 
-		for (int i = conv[2]; a <= b - 2 && i > 0 && rack.size() < 4; i--) {
+		for (int i = conv[2]; a <= b - 2 && i > 0 && row.length() < 8; i--) {
 			a += 2;
 			conv[2] = conv[2] - 1;
-			//rack.push_back(2);
 			row += " 2";
 		}
 
-		for (int i = conv[3]; a <= b - 1 && i > 0 && rack.size() < 4; i--) {
+		for (int i = conv[3]; a <= b - 1 && i > 0 && row.length() < 8; i--) {
 			a += 1;
 			conv[3] = conv[3] - 1;//add to skip space
-			//rack.push_back(1);//try change to string
 			row += " 1";
 		}
 
+		for (; row.length() < 8;) {
+			row += " _";
+		}
 		rack.push_back(row);
 		rackweight.push_back(a);
-		//test(rack);
 
-	} //cout << rack[0];
-
-	for (int z = 2; z >= 0; z--) {
-		cout << "Rack " << z << "-";
+	}
+	for (int z = (conv[4]-1); z >= 0; z--) { //vector  starts from [0]
+		cout << "Rack " << (z+1) << "-";
 		cout << rack[z] <<"(total: " << rackweight[z] << ")"<< endl;
 	}
 	
 }
 
-void sauce::test(vector<int>& sv) {
-	
-}
 
 void sauce::Outbox(vector<int>& out) {
 	shelf(out);
@@ -130,14 +122,7 @@ void sauce::Outbox(vector<int>& out) {
 
 void sauce::skip(vector<int>& coc) {
 	shelf(coc);
-	int c = 0;
-	for (int i = 0; i < 4; i++) {
-		if (coc[i] < 4) {
-			c = c + 1;
-		}
-		else
-			c = c + 0;
-	}
-	cout << c;
+	cout << "Skip space : ";
 
+	//for(int u = 0;rack)
 }
