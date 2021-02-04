@@ -50,46 +50,55 @@ void sauce::shelf(vector<int>& conv) {
 	//int p= conv[4];
 	//rack
 	
-
+	vector<string> rack;
+	vector<int> rackweight;
 	for (int t = conv[4], s = 0; t > 0, s < conv[4]; t--, s++) {
 		//numvect[+r] need this in recursive algorithm
 		int end = conv.size();
 		int b = conv[5+s];
-		vector<int> rack;
-		
+		string row;
 		int a = 0;
+		
+		//int a = 0;
 		//calculate max 5 kg in rack 1
 		//implement for loop in for loop
 		for (int i = conv[0]; a <= b - 5 && i > 0 && rack.size() < 4; i--) {
 			a += 5;
 			conv[0] = conv[0] - 1;
-			rack.push_back(5);
+			//rack.push_back(5);
+			row += " 5";
 		}
 
 		for (int i = conv[1]; a <= b - 3 && i > 0 && rack.size() < 4; i--) {
 			a += 3;
 			conv[1] = conv[1] - 1;
-			rack.push_back(3);
+			//rack.push_back(3);
+			row += " 3";
 		}
 
 		for (int i = conv[2]; a <= b - 2 && i > 0 && rack.size() < 4; i--) {
 			a += 2;
 			conv[2] = conv[2] - 1;
-			rack.push_back(2);
+			//rack.push_back(2);
+			row += " 2";
 		}
 
 		for (int i = conv[3]; a <= b - 1 && i > 0 && rack.size() < 4; i--) {
 			a += 1;
 			conv[3] = conv[3] - 1;//add to skip space
-			rack.push_back(1);
+			//rack.push_back(1);//try change to string
+			row += " 1";
 		}
 
-		cout << "Rack " << t << "-" ;
-		for (int z = 0; z < rack.size(); z++) {
-			cout << " " << rack[z];
-		}
-		cout << "(total: " << a << ")"<< endl;
+		rack.push_back(row);
+		rackweight.push_back(a);
 		//test(rack);
+
+	} //cout << rack[0];
+
+	for (int z = 2; z >= 0; z--) {
+		cout << "Rack " << z << "-";
+		cout << rack[z] <<"(total: " << rackweight[z] << ")"<< endl;
 	}
 	
 }
