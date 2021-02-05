@@ -49,14 +49,14 @@ void sauce::shelf(vector<int>& conv) {
 	readFileFun(conv);
 	//int p= conv[4];
 	//rack
-
 	for (int t = conv[4], s = 0; t > 0, s < conv[4]; t--, s++) {
 		//numvect[+r] need this in recursive algorithm
 		int end = conv.size();
 		int b = conv[5+s];
 		string row;
 		int a = 0;
-		
+		int numberofskip = 0;
+
 		//int a = 0;
 		//calculate max 5 kg in rack 1
 		//implement for loop in for loop
@@ -84,18 +84,18 @@ void sauce::shelf(vector<int>& conv) {
 			row += " 1";
 		}
 
-		for (; row.length() < 8;) {
+		for (; row.length() < 8; ) {
 			row += " _";
 		}
+
 		rack.push_back(row);
 		rackweight.push_back(a);
-
 	}
 	for (int z = (conv[4]-1); z >= 0; z--) { //vector  starts from [0]
 		cout << "Rack " << (z+1) << "-";
 		cout << rack[z] <<"(total: " << rackweight[z] << ")"<< endl;
 	}
-	
+
 }
 
 
@@ -122,7 +122,21 @@ void sauce::Outbox(vector<int>& out) {
 
 void sauce::skip(vector<int>& coc) {
 	shelf(coc);
+	int space = 0;
 	cout << "Skip space : ";
+	for (int i = 0; i < 2;i++) {
+		string str1 = " _";
 
-	//for(int u = 0;rack)
+		// Find first occurrence of "geeks" 
+		size_t found = rack[i].find(str1);
+		if (found != string::npos)
+			cout << space+1 << endl;
+
+		// Find next occurrence of "geeks". Note here we pass 
+		// "geeks" as C style string. 
+		/*char arr[] = "geeks";
+		found = str.find(arr, found + 1);
+		if (found != string::npos)
+			cout << "Next occurrence is " << found << endl;*/
+	}
 }
