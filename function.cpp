@@ -1,9 +1,9 @@
 #include "Header.h"
-
 using namespace std;
 
+int main() {
+	sauce yes;
 
-void sauce::readFileFun(vector<int>& vect) {
 	ifstream inFile;
 	inFile.open("input.txt");
 
@@ -14,119 +14,68 @@ void sauce::readFileFun(vector<int>& vect) {
 	}
 	int count = 0;
 	string box;
+	vector<int> numvect;
 	vector<string> boxvect;
-
 
 	for (; !inFile.eof(); count++) {
 		getline(inFile, box, '\n');
 		boxvect.push_back(box);
 	}
-
-	for (int n = 0; n < 4; n++) {
+	for (int n = 0; n < boxvect.size(); n++) {
 
 		string cha = boxvect[n].substr(11);
 		int m = stoi(cha);
-		vect.push_back(m);
-		//cout << vect[n] << endl;
-	}
-	if (boxvect.size() > 4) {
-		string cha = boxvect[4].substr(13);
-		int m = stoi(cha);
-		vect.push_back(m);
-		//cout << vect[4] << endl;
-	}
-	for (int n = 5; n < boxvect.size(); n++) {
+		numvect.push_back(m);
 
-		string cha = boxvect[n].substr(25);
-		int m = stoi(cha);
-		vect.push_back(m);
-		//cout << vect[n] << endl;
+		cout << numvect[n] << endl;
 	}
 
-}
+	//test
+	/*for (int s = 0; ; s++) {
+		int b = numvect[5 + s];
+		cout << " "<< b;
+	}*/
 
-void sauce::shelf(vector<int>& conv) {
-	readFileFun(conv);
-	//rack
-	for (int t = conv[4], s = 0; t > 0, s < conv[4]; t--, s++) {
-		//int s is to increment the pointer value to the weight of rack in the textfile
-		//int t is the number of racks left 
-
-		int b = conv[5 + s]; //int b is the max weight the program must try to hit
-		string row; //display the weights used in that rack
-		int curretnWt = 0;
-
+	for (int t = numvect[4], s= 0; t > 0, s < 3;t--, s++) {
+		//yes.calculate(numvect);
+		//numvect[+r] need this in recursive algorithm
+		int b = numvect[5 + s];
+		//rack1
+		//we need to make this into a class function and pass parameters from main to function and call remainder into rack2
+		vector<int> rack;
+		vector<int>outstanding;
+		outstanding = numvect;
+		int a = 0;
 		//calculate max 5 kg in rack 1
 		//implement for loop in for loop
-		for (int i = conv[0]; curretnWt <= b - 5 && i > 0 && row.length() < 8; i--) { //8 characters limit in a string
-			curretnWt += 5; //current weight value
-			conv[0] = conv[0] - 1;
-			row += " 5"; //add 5 if it went through this loop
+		for (int i = numvect[0]; a <= b - 5 && i > 0 && rack.size() < 4; i--) {
+			a += 5;
+			outstanding[0] = outstanding[0] - 1;
+			rack.push_back(5);
 		}
 
-		for (int i = conv[1]; curretnWt <= b - 3 && i > 0 && row.length() < 8; i--) {
-			curretnWt += 3;
-			conv[1] = conv[1] - 1;
-			row += " 3";
+		for (int i = numvect[1]; a <= b - 3 && i > 0 && rack.size() < 4; i--) {
+			a += 3;
+			outstanding[1] = outstanding[1] - 1;
+			rack.push_back(3);
 		}
 
-		for (int i = conv[2]; curretnWt <= b - 2 && i > 0 && row.length() < 8; i--) {
-			curretnWt += 2;
-			conv[2] = conv[2] - 1;
-			row += " 2";
+		for (int i = numvect[2]; a <= b - 2 && i > 0 && rack.size() < 4; i--) {
+			a += 2;
+			outstanding[2] = outstanding[2] - 1;
+			rack.push_back(2);
 		}
 
-		for (int i = conv[3]; curretnWt <= b - 1 && i > 0 && row.length() < 8; i--) {
-			curretnWt += 1;
-			conv[3] = conv[3] - 1;//add to skip space
-			row += " 1";
+		for (int i = numvect[3]; a <= b - 1 && i > 0 && rack.size() < 4; i--) {
+			a += 1;
+			outstanding[3] = outstanding[3] - 1;//add to skip space
+			rack.push_back(1);
 		}
+		cout << "Rack" << t;
+		for (int z = 0; z < rack.size(); z++) {
+			cout << " " << rack[z];
 
-		for (; row.length() < 8; ) {
-			row += " _";
 		}
-
-		rack.push_back(row); //put strings values in rack vector to be iterated later
-		rackweight.push_back(curretnWt); //store the current weight of the racks values in vector
+		cout << endl;
 	}
-	for (int z = (conv[4] - 1); z >= 0; z--) { //vector  starts from [0]
-		cout << "Rack " << (z + 1) << "-";
-		cout << rack[z] << "(total: " << rackweight[z] << ")" << endl; 
-	}
-
-}
-
-
-void sauce::Outbox(vector<int>& out) { //algorithm for the outstanding boxes
-	shelf(out);
-	cout << "Outstanding boxes: ";
-	for (int p = out[0]; p > 0; p--) {
-		cout << "5 "; //prints out to show which values are not used
-
-	}
-	for (int p = out[1]; p > 0; p--) {
-		cout << "3 ";
-
-	}
-	for (int p = out[2]; p > 0; p--) {
-		cout << "2 ";
-
-	}
-	for (int p = out[3]; p > 0; p--) {
-		cout << "1 ";
-
-	}
-}
-
-void sauce::skip(vector<int>& coc) { //used a find algorithm from stl
-	int space = 0;
-	for (int i = 0; i < rack.size()-1; i++) {
-		size_t nPos = rack[i].find("_", 0); // first occurrence
-		while (nPos != string::npos)
-		{
-			space++;
-			nPos = rack[i].find("_", nPos + 1);
-		}
-	}
-	cout << endl << "Skip space : "<< space;
 }
