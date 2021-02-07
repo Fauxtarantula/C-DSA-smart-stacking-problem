@@ -9,13 +9,18 @@ public:
 	
 	
 	void readFileFun(vector<int> &vect);
-	void shelf(vector<int> &conv);
+	void shelving(vector<int> &conv);
 	void Outbox(vector<int>& out);
 	void skip(vector<int>& coc);
-	//void help(vector<vector<int>>)
 
 private:
 	vector<string> rack;
 	vector<int> rackweight;
+	vector<string> boxvect;
+	int count = 0;
+	string box;
+	int space = 0;
+
 	
 };
+
